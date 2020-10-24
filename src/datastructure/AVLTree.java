@@ -1,5 +1,5 @@
 package datastructure;
 
-public class AVLTree {
+public class AVLTree <K,V> extends BinarySearchTree{
 
 }
