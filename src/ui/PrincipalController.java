@@ -104,6 +104,12 @@ public class PrincipalController {
 
     @FXML
     private Label optionLabel;
+    
+    @FXML
+    private Label numberParam;
+    
+    @FXML
+    private TextField completeField;
     //===============================================================
 	public PrincipalController() {
 		
@@ -210,7 +216,7 @@ public class PrincipalController {
     		fxml.setController(this);
     		
     		try {
-				Parent root = fxml.load();
+    			Parent root = fxml.load();
 				window = 3;
 				
 				switch (window) {
