@@ -10,6 +10,10 @@ public class Main extends Application{
 
 	private PrincipalController controller;
 	
+	public Main() {
+		controller = new PrincipalController();
+	}
+	
 	public static void main(String[] args) {
 		launch(args);
 	}

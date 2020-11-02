@@ -8,17 +8,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="mainPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="Menu">
+          <Menu mnemonicParsing="false" text="MENU">
             <items>
-              <MenuItem mnemonicParsing="false" text="Agregar" />
-                  <MenuItem mnemonicParsing="false" text="Leer" />
-                  <MenuItem mnemonicParsing="false" text="Actualizar" />
-                  <MenuItem mnemonicParsing="false" text="Eliminar" />
+              <MenuItem mnemonicParsing="false" onAction="#add" text="AGREGAR" />
+                  <MenuItem mnemonicParsing="false" onAction="#search" text="BUSCAR" />
+                  <MenuItem mnemonicParsing="false" onAction="#update" text="ACTUALIZAR" />
+                  <MenuItem mnemonicParsing="false" onAction="#delete" text="ELIMINAR" />
             </items>
           </Menu>
         </menus>
