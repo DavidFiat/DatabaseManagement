@@ -37,14 +37,33 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
 		this.size = size;
 	}
 
-	public void add(K key, V value) {
-		BinarySearchTreeNode<K, V> b = new BinarySearchTreeNode<K, V>(key, value);
-		if (root == null) {
-			setRoot(b);
-		} else {
-			root.add(b);
+	public boolean add(BinarySearchTreeNode<K, V> bstn) {
+		if (search(bstn.getKey()) == null) {
+			setRoot(this.add(getRoot(), bstn));
+			setSize(getSize() + 1);
+			return true;
 		}
-		size++;
+		return false;
+	}
+
+	private BinarySearchTreeNode<K, V> add(BinarySearchTreeNode<K, V> b, BinarySearchTreeNode<K, V> avl) {
+
+		if (b == null) {
+			return avl;
+		} else {
+			if (b.compareTo(avl) > 0) {
+				b.setLeft(add(b.getLeft(), avl));
+			} else {
+				b.setRight(add(b.getRight(), avl));
+			}
+
+			return returnMethod(b);
+
+		}
+	}
+
+	public BinarySearchTreeNode<K, V> returnMethod(BinarySearchTreeNode<K, V> b) {
+		return b;
 	}
 
 }

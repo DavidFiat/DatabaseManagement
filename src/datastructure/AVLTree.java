@@ -1,36 +1,16 @@
 package datastructure;
 
-public class AVLTree<K, V> extends BinarySearchTree {
+public class AVLTree<K extends Comparable<K>, V> extends BinarySearchTree {
 
 	public AVLTree() {
 
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public boolean add(K key, V value) {
-		if (search((Comparable<K>) key) == null) {
-			AVLNode avl = new AVLNode(key, value);
-			setRoot(this.add((AVLNode) getRoot(), avl));
-			setSize(getSize() + 1);
-			return true;
-		}
-		return false;
-	}
+	@Override
+	public BinarySearchTreeNode<K, V> returnMethod(BinarySearchTreeNode<K, V> b) {
+		update((AVLNode) b);
+		return rotate((AVLNode) b);
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private AVLNode add(AVLNode b, AVLNode avl) {
-
-		if (b == null) {
-			return avl;
-		} else {
-			if (b.compareTo(avl) > 0) {
-				b.setLeft(add((AVLNode) b.getLeft(), avl));
-			} else {
-				b.setRight(add((AVLNode) b.getRight(), avl));
-			}
-			update(b);
-			return rotate(b);
-		}
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
