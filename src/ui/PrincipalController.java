@@ -25,6 +25,14 @@ public class PrincipalController {
 	 * window = 4; if UpdateWindw is open.<br>
 	 */
 	private int window = 0;
+	
+	/**
+	 * searchWindow = 1, search by name.<br>
+	 * searchWindow = 2, search by last name.<br>
+	 * searchWindow = 3, search by full name.<br>
+	 * searchWindow = 4, search by code.<br>
+	 */
+	private int searchWindow = 0;
 	//=============================================================
 	//ADD WINDOW
 	@FXML
@@ -206,18 +214,20 @@ public class PrincipalController {
     }
 
     /**
-	 * This method open the READ interface.<br>
+	 * This method open the SEARCH interface by name.<br>
 	 * @param event
 	 */
     @FXML
-    void search(ActionEvent event) {
-    	if (window != 3) {
+    void searchByName(ActionEvent event) {
+    	if (window != 3 && searchWindow != 1) {
     		FXMLLoader fxml = new FXMLLoader(getClass().getResource("SearchWindow.fxml"));
     		fxml.setController(this);
     		
     		try {
     			Parent root = fxml.load();
+    			optionLabel.setText("Buscar por Nombre: ");
 				window = 3;
+				searchWindow = 1;
 				
 				switch (window) {
 				case 1:
@@ -250,6 +260,146 @@ public class PrincipalController {
 		}
     }
 
+    /**
+	 * This method open the SEARCH interface by last name.<br>
+	 * @param event
+	 */
+    @FXML
+    void searchByLastName(ActionEvent event) {
+    	if (window != 3 && searchWindow != 2) {
+    		FXMLLoader fxml = new FXMLLoader(getClass().getResource("SearchWindow.fxml"));
+    		fxml.setController(this);
+    		
+    		try {
+    			Parent root = fxml.load();
+    			optionLabel.setText("Buscar por Apellido: ");
+				window = 3;
+				searchWindow = 2;
+				
+				switch (window) {
+				case 1:
+					addPanel.getChildren().clear();
+					addPanel.setCenter(root);
+					break;
+				case 2:
+					deletePanel.getChildren().clear();
+					deletePanel.setCenter(root);
+					break;
+				case 4:
+					updatePanel.getChildren().clear();
+					updatePanel.setCenter(root);
+					break;
+				default:
+					mainPanel.getChildren().clear();
+					mainPanel.setCenter(root);
+					break;
+				}
+				
+			} catch (IOException io) {
+				io.printStackTrace();
+			}
+		}else {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("WARNING");
+			alert.setHeaderText("Intento de acceder a una opcion en uso");
+			alert.setContentText(null);
+			alert.showAndWait();
+		}
+    }
+    
+    /**
+	 * This method open the SEARCH interface by full name.<br>
+	 * @param event
+	 */
+    @FXML
+    void searchByFullName(ActionEvent event) {
+    	if (window != 3 && searchWindow != 3) {
+    		FXMLLoader fxml = new FXMLLoader(getClass().getResource("SearchWindow.fxml"));
+    		fxml.setController(this);
+    		
+    		try {
+    			Parent root = fxml.load();
+    			optionLabel.setText("Buscar por Nombre Completo: ");
+				window = 3;
+				searchWindow = 3;
+				
+				switch (window) {
+				case 1:
+					addPanel.getChildren().clear();
+					addPanel.setCenter(root);
+					break;
+				case 2:
+					deletePanel.getChildren().clear();
+					deletePanel.setCenter(root);
+					break;
+				case 4:
+					updatePanel.getChildren().clear();
+					updatePanel.setCenter(root);
+					break;
+				default:
+					mainPanel.getChildren().clear();
+					mainPanel.setCenter(root);
+					break;
+				}
+				
+			} catch (IOException io) {
+				io.printStackTrace();
+			}
+		}else {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("WARNING");
+			alert.setHeaderText("Intento de acceder a una opcion en uso");
+			alert.setContentText(null);
+			alert.showAndWait();
+		}
+    }
+    
+    /**
+	 * This method open the SEARCH interface by code.<br>
+	 * @param event
+	 */
+    @FXML
+    void searchByCode(ActionEvent event) {
+    	if (window != 3 && searchWindow != 4) {
+    		FXMLLoader fxml = new FXMLLoader(getClass().getResource("SearchWindow.fxml"));
+    		fxml.setController(this);
+    		
+    		try {
+    			Parent root = fxml.load();
+    			optionLabel.setText("Buscar por Codigo: ");
+				window = 3;
+				searchWindow = 4;
+				
+				switch (window) {
+				case 1:
+					addPanel.getChildren().clear();
+					addPanel.setCenter(root);
+					break;
+				case 2:
+					deletePanel.getChildren().clear();
+					deletePanel.setCenter(root);
+					break;
+				case 4:
+					updatePanel.getChildren().clear();
+					updatePanel.setCenter(root);
+					break;
+				default:
+					mainPanel.getChildren().clear();
+					mainPanel.setCenter(root);
+					break;
+				}
+				
+			} catch (IOException io) {
+				io.printStackTrace();
+			}
+		}else {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("WARNING");
+			alert.setHeaderText("Intento de acceder a una opcion en uso");
+			alert.setContentText(null);
+			alert.showAndWait();
+		}
+    }
     /**
 	 * This method open the UPDATE interface.<br>
 	 * @param event
