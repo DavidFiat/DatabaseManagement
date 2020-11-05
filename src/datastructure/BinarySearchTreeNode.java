@@ -1,43 +1,41 @@
 package datastructure;
 
-import datastructureExceptions.RepeatedElementException;
-
 public class BinarySearchTreeNode<K extends Comparable<K>, V> {
 
 	private K key;
 	private V value;
+	private int height;
 
 	private BinarySearchTreeNode<K, V> left;
 	private BinarySearchTreeNode<K, V> right;
-	private BinarySearchTreeNode<K, V> parent;
 
 	public BinarySearchTreeNode(K key, V value) {
-		this.setKey(key);
-		this.setValue(value);
+		this.key = (key);
+		this.value = (value);
 	}
 
-	public void add(BinarySearchTreeNode<K, V> b) throws RepeatedElementException {
-		if (compareTo(b) == 0)
-			throw new RepeatedElementException(b.getKey());
+	public void add(BinarySearchTreeNode<K, V> b) {
+		if (search(b.getKey()) == null) {
 
-		if (compareTo(b) > 0) {
-			if (left == null) {
-				setLeft(b);
+			if (compareTo(b) > 0) {
+				if (left == null) {
+					setLeft(b);
+				} else {
+					left.add(b);
+				}
 			} else {
-				left.add(b);
-			}
-		} else {
-			if (right == null) {
-				right = b;
-			} else {
-				right.add(b);
-			}
+				if (right == null) {
+					right = b;
+				} else {
+					right.add(b);
+				}
 
+			}
 		}
 
 	}
 
-	private int compareTo(BinarySearchTreeNode<K, V> b) {
+	public int compareTo(BinarySearchTreeNode<K, V> b) {
 		return (this.getKey()).compareTo(b.getKey());
 
 	}
@@ -74,12 +72,24 @@ public class BinarySearchTreeNode<K extends Comparable<K>, V> {
 		this.right = right;
 	}
 
-	public BinarySearchTreeNode<K, V> getParent() {
-		return parent;
+	public BinarySearchTreeNode<K, V> search(K key) {
+		if (this.key.compareTo(key) == 0) {
+			return this;
+		} else if (this.key.compareTo(key) > 0) {
+			return (left == null) ? null : left.search(key);
+
+		} else {
+			return (right == null) ? null : right.search(key);
+
+		}
 	}
 
-	public void setParent(BinarySearchTreeNode<K, V> parent) {
-		this.parent = parent;
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
 	}
 
 }
