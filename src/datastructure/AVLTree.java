@@ -9,33 +9,101 @@ public class AVLTree<K, V> extends BinarySearchTree {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public boolean add(K key, V value) {
 		if (search((Comparable<K>) key) == null) {
-			setRoot(this.add((AVLNode) getRoot(), key, value));
-			super.setSize(getSize() + 1);
+			AVLNode avl = new AVLNode(key, value);
+			setRoot(this.add((AVLNode) getRoot(), avl));
+			setSize(getSize() + 1);
 			return true;
 		}
 		return false;
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private AVLNode add(AVLNode b, K key, V value) {
-		AVLNode avl = new AVLNode(key, value);
+	private AVLNode add(AVLNode b, AVLNode avl) {
+
 		if (b == null) {
 			return avl;
 		} else {
-			if (b.compareTo(avl) < 0) {
-				b.setLeft(add(b.getLeft(), avl));
+			if (b.compareTo(avl) > 0) {
+				b.setLeft(add((AVLNode) b.getLeft(), avl));
 			} else {
-				b.setRight(add(b.getRight(), avl));
+				b.setRight(add((AVLNode) b.getRight(), avl));
 			}
 			update(b);
 			return rotate(b);
 		}
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public boolean delete(K key, V value) {
+		if (search((Comparable) key) != null) {
+			AVLNode avl = new AVLNode(key, value);
+			setRoot(delete((AVLNode) getRoot(), avl));
+			setSize(getSize() - 1);
+			return true;
+		}
+
+		return false;
+	}
+
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private AVLNode<K, V> add(BinarySearchTreeNode b, AVLNode avl) {
+	private AVLNode<K, V> delete(AVLNode b, AVLNode avl) {
+		if (b == null) {
+			return b;
+		}
+
+		if (b.compareTo(avl) > 0) {
+			b.setLeft(delete((AVLNode) b.getLeft(), avl));
+		} else if (b.compareTo(avl) < 0) {
+			b.setRight(delete((AVLNode) b.getRight(), avl));
+		} else {
+			if (b.getLeft() == null) {
+				return (AVLNode) b.getRight();
+			} else if (b.getRight() == null) {
+				return (AVLNode) b.getLeft();
+			} else {
+				if (b.getLeft().getHeight() > b.getRight().getHeight()) {
+
+					// Swap the value of the successor into the node.
+					AVLNode s = findMax((AVLNode<K, V>) b.getLeft());
+					AVLNode l = (AVLNode) b.getLeft();
+					b = s;
+
+					l = delete(l, s);
+
+				} else {
+
+					// Swap the value of the successor into the node.
+					AVLNode s = findMin((AVLNode<K, V>) b.getRight());
+					AVLNode r = (AVLNode) b.getRight();
+					b = s;
+
+					r = delete(r, s);
+				}
+			}
+
+		}
+		update(b);
+		return rotate(b);
+
+	}
+
+	// Helper method to find the leftmost node (which has the smallest value)
+	@SuppressWarnings("unchecked")
+	private AVLNode<K, V> findMin(AVLNode<K, V> avl) {
+		while (avl.getLeft() != null) {
+			avl = (AVLNode<K, V>) avl.getLeft();
+		}
 		return avl;
 
+	}
+
+	// Helper method to find the rightmost node (which has the largest value)
+	@SuppressWarnings("unchecked")
+	private AVLNode<K, V> findMax(AVLNode<K, V> avl) {
+		while (avl.getRight() != null) {
+			avl = (AVLNode<K, V>) avl.getRight();
+		}
+		return avl;
 	}
 
 	@SuppressWarnings("rawtypes")

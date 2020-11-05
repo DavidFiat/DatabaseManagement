@@ -14,27 +14,6 @@ public class BinarySearchTreeNode<K extends Comparable<K>, V> {
 		this.value = (value);
 	}
 
-	public void add(BinarySearchTreeNode<K, V> b) {
-		if (search(b.getKey()) == null) {
-
-			if (compareTo(b) > 0) {
-				if (left == null) {
-					setLeft(b);
-				} else {
-					left.add(b);
-				}
-			} else {
-				if (right == null) {
-					right = b;
-				} else {
-					right.add(b);
-				}
-
-			}
-		}
-
-	}
-
 	public int compareTo(BinarySearchTreeNode<K, V> b) {
 		return (this.getKey()).compareTo(b.getKey());
 
