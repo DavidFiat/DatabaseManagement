@@ -23,6 +23,14 @@
                   <MenuItem mnemonicParsing="false" onAction="#search" text="BUSCAR" />
                   <MenuItem mnemonicParsing="false" onAction="#update" text="ACTUALIZAR" />
                   <MenuItem mnemonicParsing="false" onAction="#delete" text="ELIMINAR" />
+                  <Menu mnemonicParsing="false" text="BUSCAR">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#searchByName" text="NOMBRE" />
+                        <MenuItem mnemonicParsing="false" onAction="#searchByLastName" text="APELLIDO" />
+                        <MenuItem mnemonicParsing="false" onAction="#searchByFullName" text="NOMBRE COMPLETO" />
+                        <MenuItem mnemonicParsing="false" onAction="#searchByCode" text="CODIGO" />
+                     </items>
+                  </Menu>
             </items>
           </Menu>
         </menus>
