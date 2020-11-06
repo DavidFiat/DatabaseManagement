@@ -8,6 +8,7 @@ public class BinarySearchTreeNode<K extends Comparable<K>, V> {
 
 	private BinarySearchTreeNode<K, V> left;
 	private BinarySearchTreeNode<K, V> right;
+	private BinarySearchTreeNode<K, V> parent;
 
 	public BinarySearchTreeNode(K key, V value) {
 		this.key = (key);
@@ -69,6 +70,14 @@ public class BinarySearchTreeNode<K extends Comparable<K>, V> {
 
 	public void setHeight(int height) {
 		this.height = height;
+	}
+
+	public BinarySearchTreeNode<K, V> getParent() {
+		return parent;
+	}
+
+	public void setParent(BinarySearchTreeNode<K, V> parent) {
+		this.parent = parent;
 	}
 
 }

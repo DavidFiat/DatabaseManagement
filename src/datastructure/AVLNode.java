@@ -1,14 +1,11 @@
 package datastructure;
 
-public class AVLNode<K, V> extends BinarySearchTreeNode {
-	
-	
+public class AVLNode<K extends Comparable<K>, V> extends BinarySearchTreeNode<K, V> {
+
 	private int balanceFactor;
 
-
-	@SuppressWarnings("unchecked")
 	public AVLNode(K key, V value) {
-		super((Comparable<K>) key, value);
+		super(key, value);
 	}
 
 	public int getBalanceFactor() {
@@ -18,7 +15,5 @@ public class AVLNode<K, V> extends BinarySearchTreeNode {
 	public void setBalanceFactor(int balanceFactor) {
 		this.balanceFactor = balanceFactor;
 	}
-	
-	
 
 }
