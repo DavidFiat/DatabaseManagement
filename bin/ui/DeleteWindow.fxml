@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="deletePanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+         <menus>
+            <Menu mnemonicParsing="false" text="MENU">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#add" text="AGREGAR" />
+                  <MenuItem mnemonicParsing="false" onAction="#update" text="ACTUALIZAR" />
+                  <MenuItem mnemonicParsing="false" onAction="#delete" text="ELIMINAR" />
+                  <Menu mnemonicParsing="false" text="BUSCAR">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#searchByName" text="NOMBRE" />
+                        <MenuItem mnemonicParsing="false" onAction="#searchByLastName" text="APELLIDO" />
+                        <MenuItem mnemonicParsing="false" onAction="#searchByFullName" text="NOMBRE COMPLETO" />
+                        <MenuItem mnemonicParsing="false" onAction="#searchByCode" text="CODIGO" />
+                     </items>
+                  </Menu>
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="600.0">
+               <children>
+                  <Label text="Nombre: ">
+                     <font>
+                        <Font name="Courier New Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="name" layoutX="267.0" layoutY="18.0" text="#null">
+                     <font>
+                        <Font name="Courier New Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="98.0" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Apellido: ">
+                     <font>
+                        <Font name="Courier New Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lastaName" layoutX="256.0" layoutY="18.0" text="#null">
+                     <font>
+                        <Font name="Courier New Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="148.0" prefHeight="100.0" prefWidth="600.0">
+               <children>
+                  <Label prefHeight="23.0" prefWidth="73.0" text="Sexo: ">
+                     <font>
+                        <Font name="Courier New Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="gender" layoutX="274.0" layoutY="18.0" prefHeight="23.0" prefWidth="73.0" text="#null">
+                     <font>
+                        <Font name="Courier New Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="194.0" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Fecha de Nacimiento: ">
+                     <font>
+                        <Font name="Courier New Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="birthdayDate" layoutX="197.0" layoutY="18.0" text="#null">
+                     <font>
+                        <Font name="Courier New Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="217.0" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Estatura: ">
+                     <font>
+                        <Font name="Courier New Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="height" layoutX="245.0" layoutY="18.0" prefHeight="23.0" prefWidth="68.0" text="#null ">
+                     <font>
+                        <Font name="Courier New Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="245.0" layoutY="25.0" text="cm">
+                     <font>
+                        <Font name="Courier New Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="230.0" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Nacionalidad: ">
+                     <font>
+                        <Font name="Courier New Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="nation" layoutX="234.0" layoutY="18.0" text="#null">
+                     <font>
+                        <Font name="Courier New Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="47.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" text="Guardar">
+               <font>
+                  <Font name="Courier New Bold Italic" size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>
