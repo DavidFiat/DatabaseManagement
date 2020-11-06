@@ -19,6 +19,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
+import model.Person;
 
 public class PrincipalController {
 	//RELATIONS
@@ -28,8 +29,11 @@ public class PrincipalController {
 	/**
 	 * window = 1, if AddWindow is open.<br>
 	 * window = 2; if DeleteWindow is open.<br>
-	 * window = 3, if SearchWindow is open.<br>
-	 * window = 4; if UpdateWindw is open.<br>
+	 * window = 3, if SearchWindow by name  is open.<br>
+	 * window = 4, if search by last name is open.<br>
+	 * window = 5, if search by full name is open.<br>
+	 * window = 6, if search by code.<br>
+	 * window = 7; if UpdateWindw is open.<br>
 	 */
 	private int window = 0;
 	
@@ -289,7 +293,7 @@ public class PrincipalController {
 	 */
     @FXML
     void searchByLastName(ActionEvent event) {
-    	if (window != 3) {
+    	if (window != 4) {
     		FXMLLoader fxml = new FXMLLoader(getClass().getResource("SearchWindow2.fxml"));
     		fxml.setController(this);
     		
@@ -335,7 +339,7 @@ public class PrincipalController {
 	 */
     @FXML
     void searchByFullName(ActionEvent event) {
-    	if (window != 3) {
+    	if (window != 5) {
     		FXMLLoader fxml = new FXMLLoader(getClass().getResource("SearchWindow3.fxml"));
     		fxml.setController(this);
     		
@@ -380,7 +384,7 @@ public class PrincipalController {
 	 */
     @FXML
     void searchByCode(ActionEvent event) {
-    	if (window != 3) {
+    	if (window != 6) {
     		FXMLLoader fxml = new FXMLLoader(getClass().getResource("SearchWindow4.fxml"));
     		fxml.setController(this);
     		
@@ -424,7 +428,7 @@ public class PrincipalController {
 	 */
     @FXML
 	void update(ActionEvent event) {
-    	if (window != 4) {
+    	if (window != 7) {
     		FXMLLoader fxml = new FXMLLoader(getClass().getResource("UpdateWindow.fxml"));
     		fxml.setController(this);
     		
