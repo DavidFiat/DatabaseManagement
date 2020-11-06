@@ -33,13 +33,6 @@ public class PrincipalController {
 	 */
 	private int window = 0;
 	
-	/**
-	 * searchWindow = 1, search by name.<br>
-	 * searchWindow = 2, search by last name.<br>
-	 * searchWindow = 3, search by full name.<br>
-	 * searchWindow = 4, search by code.<br>
-	 */
-	private int searchWindow = 0;
 	//=============================================================
 	//ADD WINDOW
 	@FXML
@@ -116,9 +109,6 @@ public class PrincipalController {
     //SEARCH WINDOW 
     @FXML
     private BorderPane searchPanel;
-
-    @FXML
-    private Label optionLabel;
     
     @FXML
     private Label numberParam;
@@ -130,31 +120,32 @@ public class PrincipalController {
     private TableView<Person> table;
 
     @FXML
-    private TableColumn<?, ?> codigoCol;
+    private TableColumn<Person, String> codigoCol;
 
     @FXML
-    private TableColumn<?, ?> nombreCol;
+    private TableColumn<Person, String> nombreCol;
 
     @FXML
-    private TableColumn<?, ?> apellidoCol;
+    private TableColumn<Person, String> apellidoCol;
 
     @FXML
-    private TableColumn<?, ?> fechaCol;
-    //private Person per;
-
+    private TableColumn<Person, String> sexoCol;
+    
+    @FXML
+    private TableColumn<Person, Void> btCol;
     //===============================================================
 	public PrincipalController() {
 		
 	}
-	
-	public void manageTable() {
-		ObservableList<Person>temp = FXCollections.observableArrayList(new Person("Julian"), new Person("David"), new Person("Johan"));
-		/*
+	/*
+	public void initTable() {
+		/ObservableList<Person>temp = FXCollections.observableArrayList(new Person("Julian", "1234", "Rivera", 'M'), new Person("David", "Fiat"), new Person("Johan"));
+		
 		column1.setCellValueFactory(new PropertyValueFactory<Person, String>("name"));
 		column2.setCellValueFactory(new PropertyValueFactory<Person, Button>("bt"));
-		*/
+		
 		table.setItems(temp);
-	}
+	}*/
 	
 	/**
 	 * This method open the ADD interface.<br>
@@ -252,16 +243,14 @@ public class PrincipalController {
 	 */
     @FXML
     void searchByName(ActionEvent event) {
-    	if (window != 3 && searchWindow != 1) {
+    	if (window != 3) {
     		FXMLLoader fxml = new FXMLLoader(getClass().getResource("SearchWindow.fxml"));
     		fxml.setController(this);
     		
     		try {
     			Parent root = fxml.load();
-    			//manageTable();
-    			optionLabel.setText("Buscar por Nombre: ");
+    			//initTable();
 				window = 3;
-				searchWindow = 1;
 				
 				switch (window) {
 				case 1:
@@ -300,15 +289,14 @@ public class PrincipalController {
 	 */
     @FXML
     void searchByLastName(ActionEvent event) {
-    	if (window != 3 && searchWindow != 2) {
-    		FXMLLoader fxml = new FXMLLoader(getClass().getResource("SearchWindow.fxml"));
+    	if (window != 3) {
+    		FXMLLoader fxml = new FXMLLoader(getClass().getResource("SearchWindow2.fxml"));
     		fxml.setController(this);
     		
     		try {
     			Parent root = fxml.load();
-    			optionLabel.setText("Buscar por Apellido: ");
 				window = 3;
-				searchWindow = 2;
+				
 				
 				switch (window) {
 				case 1:
@@ -347,15 +335,13 @@ public class PrincipalController {
 	 */
     @FXML
     void searchByFullName(ActionEvent event) {
-    	if (window != 3 && searchWindow != 3) {
-    		FXMLLoader fxml = new FXMLLoader(getClass().getResource("SearchWindow.fxml"));
+    	if (window != 3) {
+    		FXMLLoader fxml = new FXMLLoader(getClass().getResource("SearchWindow3.fxml"));
     		fxml.setController(this);
     		
     		try {
     			Parent root = fxml.load();
-    			optionLabel.setText("Buscar por Nombre Completo: ");
 				window = 3;
-				searchWindow = 3;
 				
 				switch (window) {
 				case 1:
@@ -394,15 +380,13 @@ public class PrincipalController {
 	 */
     @FXML
     void searchByCode(ActionEvent event) {
-    	if (window != 3 && searchWindow != 4) {
-    		FXMLLoader fxml = new FXMLLoader(getClass().getResource("SearchWindow.fxml"));
+    	if (window != 3) {
+    		FXMLLoader fxml = new FXMLLoader(getClass().getResource("SearchWindow4.fxml"));
     		fxml.setController(this);
     		
     		try {
     			Parent root = fxml.load();
-    			optionLabel.setText("Buscar por Codigo: ");
 				window = 3;
-				searchWindow = 4;
 				
 				switch (window) {
 				case 1:
