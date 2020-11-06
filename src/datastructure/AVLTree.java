@@ -1,93 +1,37 @@
 package datastructure;
 
-public class AVLTree<K extends Comparable<K>, V> extends BinarySearchTree {
+public class AVLTree<K extends Comparable<K>, V> extends BinarySearchTree<K, V> {
 
 	public AVLTree() {
 
 	}
 
 	@Override
-	public BinarySearchTreeNode<K, V> returnMethod(BinarySearchTreeNode<K, V> b) {
-		update((AVLNode) b);
-		return rotate((AVLNode) b);
-
+	public boolean add(K key, V value) {
+		AVLNode<K, V> avlNode = new AVLNode<>(key, value);
+		boolean added = add(avlNode);
+		if (added) {
+			update(avlNode);
+			rotate(avlNode);
+		}
+		return added;
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public boolean delete(K key, V value) {
-		if (search((Comparable) key) != null) {
-			AVLNode avl = new AVLNode(key, value);
-			setRoot(delete((AVLNode) getRoot(), avl));
+	@Override
+	public boolean delete(K key) {
+		boolean deleted = false;
+		AVLNode<K, V> avlNode = (AVLNode<K, V>) search(key);
+		if (avlNode != null) {
 			setSize(getSize() - 1);
-			return true;
+			deleted = delete(avlNode);
+			update(avlNode);
+			rotate(avlNode);
 		}
-
-		return false;
-	}
-
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private AVLNode<K, V> delete(AVLNode b, AVLNode avl) {
-		if (b == null) {
-			return b;
-		}
-
-		if (b.compareTo(avl) > 0) {
-			b.setLeft(delete((AVLNode) b.getLeft(), avl));
-		} else if (b.compareTo(avl) < 0) {
-			b.setRight(delete((AVLNode) b.getRight(), avl));
-		} else {
-			if (b.getLeft() == null) {
-				return (AVLNode) b.getRight();
-			} else if (b.getRight() == null) {
-				return (AVLNode) b.getLeft();
-			} else {
-				if (b.getLeft().getHeight() > b.getRight().getHeight()) {
-
-					// Swap the value of the successor into the node.
-					AVLNode s = findMax((AVLNode<K, V>) b.getLeft());
-					AVLNode l = (AVLNode) b.getLeft();
-					b = s;
-
-					l = delete(l, s);
-
-				} else {
-
-					// Swap the value of the successor into the node.
-					AVLNode s = findMin((AVLNode<K, V>) b.getRight());
-					AVLNode r = (AVLNode) b.getRight();
-					b = s;
-
-					r = delete(r, s);
-				}
-			}
-
-		}
-		update(b);
-		return rotate(b);
+		return deleted;
 
 	}
 
-	// Helper method to find the leftmost node (which has the smallest value)
-	@SuppressWarnings("unchecked")
-	private AVLNode<K, V> findMin(AVLNode<K, V> avl) {
-		while (avl.getLeft() != null) {
-			avl = (AVLNode<K, V>) avl.getLeft();
-		}
-		return avl;
-
-	}
-
-	// Helper method to find the rightmost node (which has the largest value)
-	@SuppressWarnings("unchecked")
-	private AVLNode<K, V> findMax(AVLNode<K, V> avl) {
-		while (avl.getRight() != null) {
-			avl = (AVLNode<K, V>) avl.getRight();
-		}
-		return avl;
-	}
-
-	@SuppressWarnings("rawtypes")
-	private void update(AVLNode b) {
+	private void update(AVLNode<K, V> b) {
 		int lHeight = (b.getLeft() == null) ? -1 : b.getLeft().getHeight();
 		int rHeight = (b.getRight() == null) ? -1 : b.getRight().getHeight();
 
@@ -96,10 +40,9 @@ public class AVLTree<K extends Comparable<K>, V> extends BinarySearchTree {
 		b.setBalanceFactor(lHeight - rHeight);
 	}
 
-	@SuppressWarnings("rawtypes")
-	private AVLNode rotate(AVLNode b) {
+	private AVLNode<K, V> rotate(AVLNode<K, V> b) {
 		if (b.getBalanceFactor() == 2) {
-			if (((AVLNode) b.getLeft()).getBalanceFactor() >= 0) {
+			if (((AVLNode<K, V>) b.getLeft()).getBalanceFactor() >= 0) {
 				return leftLeftCase(b);
 
 			} else {
@@ -108,7 +51,7 @@ public class AVLTree<K extends Comparable<K>, V> extends BinarySearchTree {
 
 		} else if (b.getBalanceFactor() == -2) {
 
-			if (((AVLNode) b.getRight()).getBalanceFactor() <= 0) {
+			if (((AVLNode<K, V>) b.getRight()).getBalanceFactor() <= 0) {
 				return rightRightCase(b);
 
 			} else {
@@ -119,31 +62,26 @@ public class AVLTree<K extends Comparable<K>, V> extends BinarySearchTree {
 		return b;
 	}
 
-	@SuppressWarnings("rawtypes")
-	private AVLNode leftLeftCase(AVLNode b) {
+	private AVLNode<K, V> leftLeftCase(AVLNode<K, V> b) {
 		return rightRotation(b);
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private AVLNode leftRightCase(AVLNode b) {
-		b.setLeft(leftRotation((AVLNode) b.getLeft()));
+	private AVLNode<K, V> leftRightCase(AVLNode<K, V> b) {
+		b.setLeft(leftRotation((AVLNode<K, V>) b.getLeft()));
 		return leftLeftCase(b);
 	}
 
-	@SuppressWarnings("rawtypes")
-	private AVLNode rightRightCase(AVLNode b) {
+	private AVLNode<K, V> rightRightCase(AVLNode<K, V> b) {
 		return leftRotation(b);
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private AVLNode rightLeftCase(AVLNode b) {
-		b.setRight(rightRotation((AVLNode) b.getRight()));
+	private AVLNode<K, V> rightLeftCase(AVLNode<K, V> b) {
+		b.setRight(rightRotation((AVLNode<K, V>) b.getRight()));
 		return rightRightCase(b);
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private AVLNode leftRotation(AVLNode b) {
-		AVLNode a = (AVLNode) b.getRight();
+	private AVLNode<K, V> leftRotation(AVLNode<K, V> b) {
+		AVLNode<K, V> a = (AVLNode<K, V>) b.getRight();
 		b.setRight(a.getLeft());
 		a.setLeft(b);
 		update(b);
@@ -151,9 +89,8 @@ public class AVLTree<K extends Comparable<K>, V> extends BinarySearchTree {
 		return a;
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private AVLNode rightRotation(AVLNode b) {
-		AVLNode a = (AVLNode) b.getLeft();
+	private AVLNode<K, V> rightRotation(AVLNode<K, V> b) {
+		AVLNode<K, V> a = (AVLNode<K, V>) b.getLeft();
 		b.setLeft(a.getRight());
 		a.setRight(b);
 		update(b);
