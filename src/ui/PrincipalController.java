@@ -1,16 +1,23 @@
 package ui;
 
 import java.io.IOException;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 
 public class PrincipalController {
@@ -118,9 +125,35 @@ public class PrincipalController {
     
     @FXML
     private TextField completeField;
+    
+    @FXML
+    private TableView<Person> table;
+
+    @FXML
+    private TableColumn<?, ?> codigoCol;
+
+    @FXML
+    private TableColumn<?, ?> nombreCol;
+
+    @FXML
+    private TableColumn<?, ?> apellidoCol;
+
+    @FXML
+    private TableColumn<?, ?> fechaCol;
+    //private Person per;
+
     //===============================================================
 	public PrincipalController() {
 		
+	}
+	
+	public void manageTable() {
+		ObservableList<Person>temp = FXCollections.observableArrayList(new Person("Julian"), new Person("David"), new Person("Johan"));
+		/*
+		column1.setCellValueFactory(new PropertyValueFactory<Person, String>("name"));
+		column2.setCellValueFactory(new PropertyValueFactory<Person, Button>("bt"));
+		*/
+		table.setItems(temp);
 	}
 	
 	/**
@@ -225,6 +258,7 @@ public class PrincipalController {
     		
     		try {
     			Parent root = fxml.load();
+    			//manageTable();
     			optionLabel.setText("Buscar por Nombre: ");
 				window = 3;
 				searchWindow = 1;
@@ -405,7 +439,7 @@ public class PrincipalController {
 	 * @param event
 	 */
     @FXML
-    void update(ActionEvent event) {
+	void update(ActionEvent event) {
     	if (window != 4) {
     		FXMLLoader fxml = new FXMLLoader(getClass().getResource("UpdateWindow.fxml"));
     		fxml.setController(this);
