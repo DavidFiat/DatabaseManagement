@@ -84,7 +84,7 @@
                         <Font name="Courier New Bold Italic" size="18.0" />
                      </font>
                   </Label>
-                  <DatePicker fx:id="birthdayUpdate" prefHeight="25.0" prefWidth="161.0" />
+                  <DatePicker fx:id="birthdayUpdate" editable="false" prefHeight="25.0" prefWidth="161.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="217.0" prefHeight="100.0" prefWidth="200.0">
@@ -118,7 +118,7 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="47.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" text="Actualizar">
+            <Button mnemonicParsing="false" onAction="#actualize" text="Actualizar">
                <font>
                   <Font name="Courier New Bold Italic" size="18.0" />
                </font>
