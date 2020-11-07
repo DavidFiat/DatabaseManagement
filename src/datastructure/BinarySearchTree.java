@@ -3,7 +3,6 @@ package datastructure;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class BinarySearchTree<K extends Comparable<K>, V> {
 
 	private BinarySearchTreeNode<K, V> root;
@@ -141,6 +140,30 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
 
 			} else {
 				add(b.getRight(), newNode);
+			}
+		}
+	}
+
+	public List<V> returnByKey(String key) {
+		List<V> c = new ArrayList<>();
+		if (root != null) {
+			returnByKey(c, root, key);
+		}
+		return c;
+
+	}
+
+	private void returnByKey(List<V> c, BinarySearchTreeNode<K, V> node, String key) {
+		String nodeKey = (String) node.getKey();
+		if (node != null) {
+
+			if (nodeKey.compareTo(key) > 0) {
+				returnByKey(c, node.getLeft(), key);
+			} else if (nodeKey.compareTo(key) < 0) {
+				returnByKey(c, node.getRight(), key);
+			} else {
+
+				c.add(node.getValue());
 			}
 		}
 	}

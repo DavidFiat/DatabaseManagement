@@ -46,7 +46,7 @@ public class Trie {
 		return false;
 	}
 
-	public List<String> autocomplete(String word) {
+	public List<String> autoComplete(String word) {
 		TrieNode lastNode = root;
 		for (int i = 0; i < word.length(); i++) {
 			lastNode = lastNode.getChild(word.charAt(i));

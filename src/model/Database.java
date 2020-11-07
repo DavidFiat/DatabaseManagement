@@ -55,6 +55,14 @@ public class Database {
 		return nameAndLastNameTree.search(k).getValue();
 	}
 
+	public void delete(Person p) {
+		nameTree.delete(p.getName());
+		lastNameTree.delete(p.getLastName());
+		codeTree.delete(p.getCode());
+		nameAndLastNameTree.delete(p.getName() + " " + p.getLastName());
+
+	}
+
 	public AVLTree<String, Person> getNameTree() {
 		return nameTree;
 	}
@@ -94,7 +102,7 @@ public class Database {
 			t.add(persons.get(i).getName());
 		}
 
-		return t.autocomplete(word);
+		return t.autoComplete(word);
 
 	}
 
@@ -102,10 +110,10 @@ public class Database {
 		Trie t = new Trie();
 		List<Person> persons = new ArrayList<Person>();
 		for (int i = 0; i < persons.size(); i++) {
-			t.add(persons.get(i).getName());
+			t.add(persons.get(i).getLastName());
 		}
 
-		return t.autocomplete(word);
+		return t.autoComplete(word);
 
 	}
 
@@ -113,22 +121,21 @@ public class Database {
 		Trie t = new Trie();
 		List<Person> persons = new ArrayList<Person>();
 		for (int i = 0; i < persons.size(); i++) {
-			t.add(persons.get(i).getName());
+			t.add(persons.get(i).getCode());
 		}
 
-		return t.autocomplete(word);
+		return t.autoComplete(word);
 
 	}
 
 	public List<String> autoCompleteNameAndLastName(String word) {
-		Trie t = new Trie();
-		List<Person> persons = new ArrayList<Person>();
+		List<String> s = new ArrayList<String>();
+		List<Person> persons = nameAndLastNameTree.autoComplete(word);
 		for (int i = 0; i < persons.size(); i++) {
-			t.add(persons.get(i).getName());
+			String str = persons.get(i).getName() + " " + persons.get(i).getLastName();
+			s.add(str);
 		}
-
-		return t.autocomplete(word);
-
+		return s;
 	}
 
 }
