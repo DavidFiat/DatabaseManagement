@@ -7,13 +7,13 @@ public class Database {
 	private AVLTree<String, Person> nameTree;
 	private AVLTree<String, Person> lastNameTree;
 	private RedBlackTree<String, Person> nameAndLastNameTree;
-	private Trie<String, Person> codeTree;
+	private AVLTree<String, Person> codeTree;
 
 	public Database() {
 		nameTree = new AVLTree<String, Person>();
 		lastNameTree = new AVLTree<String, Person>();
 		nameAndLastNameTree = new RedBlackTree<String, Person>();
-		codeTree = new Trie<>();
+		codeTree = new AVLTree<String, Person>();
 
 	}
 
@@ -57,11 +57,11 @@ public class Database {
 		this.nameAndLastNameTree = nameAndLastNameTree;
 	}
 
-	public Trie<String, Person> getCodeTree() {
+	public AVLTree<String, Person> getCodeTree() {
 		return codeTree;
 	}
 
-	public void setCodeTree(Trie<String, Person> codeTree) {
+	public void setCodeTree(AVLTree<String, Person> codeTree) {
 		this.codeTree = codeTree;
 	}
 
