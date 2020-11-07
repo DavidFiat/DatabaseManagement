@@ -1,5 +1,8 @@
 package datastructure;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BinarySearchTree<K extends Comparable<K>, V> {
 
 	private BinarySearchTreeNode<K, V> root;
@@ -61,17 +64,21 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
 			switch (i) {
 			case 1:
 				parent.setLeft(bstn.getRight());
+				break;
 
 			case 2:
 				parent.setRight(bstn.getRight());
+				break;
 			}
 			return true;
 		} else if (bstn.getRight() == null) {
 			switch (i) {
 			case 1:
 				parent.setLeft(bstn.getLeft());
+				break;
 			case 2:
 				parent.setRight(bstn.getLeft());
+				break;
 			}
 			return true;
 
@@ -107,16 +114,13 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
 	}
 
 	protected boolean add(BinarySearchTreeNode<K, V> bstn) {
-		if (search(bstn.getKey()) == null) {
-			if (root == null) {
-				root = bstn;
-			} else {
-				add(root, bstn);
-			}
-			setSize(getSize() + 1);
-			return true;
+		if (root == null) {
+			root = bstn;
+		} else {
+			add(root, bstn);
 		}
-		return false;
+		setSize(getSize() + 1);
+		return true;
 
 	}
 
@@ -140,4 +144,42 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
 		}
 	}
 
+	public List<V> autoComplete(String word) {
+		List<V> c = new ArrayList<>();
+		if (root != null) {
+			autoComplete(c, root, word);
+		}
+		return c;
+
+	}
+
+	private void autoComplete(List<V> c, BinarySearchTreeNode<K, V> node, String word) {
+		String key = (String) node.getKey();
+		if (node != null) {
+
+			if (key.charAt(0) - (word.charAt(0)) > 0) {
+				autoComplete(c, node.getLeft(), word);
+			} else if (key.charAt(0) - (word.charAt(0)) < 0) {
+				autoComplete(c, node.getRight(), word);
+			} else {
+
+				int l = word.length();
+				boolean different = false;
+				for (int i = 0; i < l; i++) {
+					if (word.charAt(i) != key.charAt(i)) {
+						different = true;
+					}
+
+				}
+				if (!different) {
+					c.add(node.getValue());
+				}
+			}
+		}
+	}
+
+	public void update(K key, V value) {
+		BinarySearchTreeNode<K, V> bstn = search(key);
+		bstn.setValue(value);
+	}
 }
