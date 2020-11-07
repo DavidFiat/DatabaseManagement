@@ -159,20 +159,21 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
 
 			if (key.charAt(0) - (word.charAt(0)) > 0) {
 				autoComplete(c, node.getLeft(), word);
-			} else if (key.charAt(0) - (word.charAt(0)) > 0) {
+			} else if (key.charAt(0) - (word.charAt(0)) < 0) {
 				autoComplete(c, node.getRight(), word);
 			} else {
-			}
-			int l = word.length();
-			boolean different = false;
-			for (int i = 0; i < l; i++) {
-				if (word.charAt(i) != key.charAt(i)) {
-					different = true;
-				}
 
-			}
-			if (!different) {
-				c.add(node.getValue());
+				int l = word.length();
+				boolean different = false;
+				for (int i = 0; i < l; i++) {
+					if (word.charAt(i) != key.charAt(i)) {
+						different = true;
+					}
+
+				}
+				if (!different) {
+					c.add(node.getValue());
+				}
 			}
 		}
 	}
