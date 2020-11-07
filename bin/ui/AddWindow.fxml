@@ -20,7 +20,6 @@
           <Menu mnemonicParsing="false" text="MENU">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#add" text="AGREGAR" />
-                  <MenuItem mnemonicParsing="false" onAction="#search" text="BUSCAR" />
                   <MenuItem mnemonicParsing="false" onAction="#update" text="ACTUALIZAR" />
                   <MenuItem mnemonicParsing="false" onAction="#delete" text="ELIMINAR" />
                   <Menu mnemonicParsing="false" text="BUSCAR">
@@ -85,7 +84,7 @@
                         <Font name="Courier New Bold Italic" size="18.0" />
                      </font>
                   </Label>
-                  <DatePicker fx:id="birthday" prefHeight="25.0" prefWidth="161.0" />
+                  <DatePicker fx:id="birthday" editable="false" prefHeight="25.0" prefWidth="161.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="217.0" prefHeight="100.0" prefWidth="200.0">
@@ -119,7 +118,7 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="47.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" text="Guardar">
+            <Button mnemonicParsing="false" onAction="#save" text="Guardar">
                <font>
                   <Font name="Courier New Bold Italic" size="18.0" />
                </font>

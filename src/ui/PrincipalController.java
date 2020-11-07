@@ -2,6 +2,7 @@ package ui;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -36,12 +37,15 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
+import model.Database;
 import model.Person;
 
 public class PrincipalController {
 	//RELATIONS
 	@FXML
     private BorderPane mainPanel;
+	
+	private Database data;
 	//===============================================
 	/**
 	 * window = 1, if AddWindow is open.<br>
@@ -190,7 +194,7 @@ public class PrincipalController {
     private ImageView photo;
     //===============================================================
 	public PrincipalController() {
-		
+		data = new Database();
 	}
 	
 	/**
@@ -304,7 +308,41 @@ public class PrincipalController {
      */
     @FXML
     void save(ActionEvent event) {
-    	System.err.println("Funcionalidad proximamente");
+    	Person p = null;
+  
+    	String name = nameField.getText();
+    	String last = lastNField.getText();
+    	char sex = ' ';
+    	
+    	if (male.isSelected()) {
+			sex = Person.MASCULINE;
+		}if (female.isSelected()) {
+			sex = Person.FEMENINE;
+		}
+		LocalDate temp = birthday.getValue();
+		String date = String.valueOf(temp);
+		int height = Integer.parseInt(heightField.getText());
+		String nation = nationalityField.getText();
+		
+		//String code = String.valueOf((BigInteger)(Math.random()*(1000000000 - 1))+1);
+		String code = " ";
+		p = new Person(code, name, last, sex, date, height, nation);
+		
+    	if (data.addByCode(p) == true) {
+			data.addByName(p);
+			data.addByLastName(p);
+			data.addByNameAndLastName(p);
+			
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setHeaderText(null);
+			alert.setContentText("Se ha agregado una nueva persona al sistema");
+			alert.showAndWait();
+		}else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setHeaderText(null);
+			alert.setContentText("No se puede agregar la persona, ya existe en el sistema");
+			alert.showAndWait();
+		}
     }
 
     /**

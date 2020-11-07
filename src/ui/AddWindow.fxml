@@ -84,7 +84,7 @@
                         <Font name="Courier New Bold Italic" size="18.0" />
                      </font>
                   </Label>
-                  <DatePicker fx:id="birthday" prefHeight="25.0" prefWidth="161.0" />
+                  <DatePicker fx:id="birthday" editable="false" prefHeight="25.0" prefWidth="161.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="217.0" prefHeight="100.0" prefWidth="200.0">
