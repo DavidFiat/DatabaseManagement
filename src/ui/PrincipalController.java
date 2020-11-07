@@ -8,6 +8,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
@@ -32,6 +34,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -151,7 +154,7 @@ public class PrincipalController {
     private TextField completeField;
     
     @FXML
-    private TableView<Person> table;
+    private TableView<String> table;
 
     @FXML
     private TableColumn<Person, String> codigoCol;
@@ -201,12 +204,13 @@ public class PrincipalController {
 	 *this method initialize the tableView at search windows.<br>
 	 */
 	public void initTable() {
-		ObservableList<Person>temp = FXCollections.observableArrayList(
+		/*ObservableList<Person>temp = FXCollections.observableArrayList(
 				new Person("1234", "Julian", "Rivera", 'M', "2001/11/29", 171, "Colombiano"),
 				new Person("4567", "David", "Jhun", 'M', "2000/02/15", 172, "Coreano"),
 				new Person("1596", "David", "Fiat", 'M', "1999/08/12", 175, "Español"),
 				new Person("1468", "Rosa", "Melano", 'F', "2006/06/06", 150, "Sueca"));
-		
+		*/
+		ObservableList<String>temp = null;
 		codigoCol.setCellValueFactory(new PropertyValueFactory<Person, String>("code"));
 		nombreCol.setCellValueFactory(new PropertyValueFactory<Person, String>("name"));
 		apellidoCol.setCellValueFactory(new PropertyValueFactory<Person, String>("lastName"));
@@ -216,6 +220,19 @@ public class PrincipalController {
 		addButtonToTable();
 	}
 	
+	public void manageTable(String s){
+		ArrayList<String> temp = (ArrayList<String>) data.autoCompleteName(s);
+		ObservableList<String> list = FXCollections.observableArrayList(temp);
+		
+		codigoCol.setCellValueFactory(new PropertyValueFactory<Person, String>("code"));
+		nombreCol.setCellValueFactory(new PropertyValueFactory<Person, String>("name"));
+		apellidoCol.setCellValueFactory(new PropertyValueFactory<Person, String>("lastName"));
+		sexoCol.setCellValueFactory(new PropertyValueFactory<Person, String>("sex"));
+		
+		table.setItems(list);
+		
+		addButtonToTable();
+	}
 	/*
 	 *this method put a button in each row of the tableView. <br>
 	 */
@@ -324,8 +341,7 @@ public class PrincipalController {
 		int height = Integer.parseInt(heightField.getText());
 		String nation = nationalityField.getText();
 		
-		//String code = String.valueOf((BigInteger)(Math.random()*(1000000000 - 1))+1);
-		String code = " ";
+		String code = String.valueOf((long)(Math.random()*(1000000000 - 1))+1);
 		p = new Person(code, name, last, sex, date, height, nation);
 		
     	if (data.addByCode(p) == true) {
@@ -617,7 +633,8 @@ public class PrincipalController {
     
     @FXML
     void show(ActionEvent event) throws IOException {
-    	Person temp = table.getSelectionModel().getSelectedItem();
+    	String s = table.getSelectionModel().getSelectedItem();
+    	Person temp = data.searchByName(s);
     	if (temp !=null) {
 			showing();
 			nameR.setText(temp.getName());
@@ -657,5 +674,13 @@ public class PrincipalController {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+    }
+    
+    @FXML
+    void search(KeyEvent event) {
+    	//String s = "Select * from table WHERE name LIKE " + completeField.getText() + "%";
+    	String s = completeField.getText();
+    	//System.out.println(data.autoCompleteName(s).get(0));
+    	manageTable(s);
     }
 }
