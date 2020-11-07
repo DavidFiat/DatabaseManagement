@@ -30,7 +30,11 @@ public class Database {
 	}
 
 	public boolean addByCode(Person p) {
-		return codeTree.add(p.getCode(), p);
+		boolean added = false;
+		if (codeTree.search(p.getCode()) == null) {
+			added = codeTree.add(p.getCode(), p);
+		}
+		return added;
 	}
 
 	public AVLTree<String, Person> getNameTree() {

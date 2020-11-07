@@ -12,6 +12,7 @@ public class TrieNode {
 	public TrieNode(char element) {
 		this.element = element;
 		children = new LinkedList<TrieNode>();
+		isEnd = false;
 	}
 
 }
