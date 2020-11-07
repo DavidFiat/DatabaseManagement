@@ -1,15 +1,14 @@
 package ui;
 
-import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.Month;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -606,19 +605,19 @@ public class PrincipalController {
 		}
     }
     
-    public void loadImage() throws IOException {
-    	String page = "https://thispersondoesnotexist.com/image";
-        URL url = new URL(page);
-        /*final HttpURLConnection image = (HttpURLConnection) url
-                .openConnection();
-        image.setRequestProperty(
-                "User-Agent",
-                "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)");
-        BufferedImage bufferedImage = ImageIO.read(image.getInputStream());
-        Image picture = SwingFXUtils.toFXImage(bufferedImage, null);*/
-      
-        //ImageIcon intento = new ImageIcon(url);
-        Image picture = new Image(page);
-        photo.setImage(picture);
+    public void loadImage(){
+		try {
+			URL url = new URL("https://thispersondoesnotexist.com/image");
+			HttpURLConnection image  =(HttpURLConnection) url.openConnection();
+			image.setRequestProperty("User-Agent","Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)");
+	        
+			BufferedImage bufferedImage = ImageIO.read(image.getInputStream());
+	        Image picture = SwingFXUtils.toFXImage(bufferedImage, null);
+	      
+	        photo.setImage(picture);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
     }
 }

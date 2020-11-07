@@ -46,7 +46,7 @@
                         <Font name="Courier New Bold Italic" size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="completeField" prefHeight="25.0" prefWidth="184.0" />
+                  <TextField fx:id="completeField" prefHeight="25.0" prefWidth="194.0" />
                   <Label fx:id="numberParam" layoutX="138.0" layoutY="10.0" prefHeight="23.0" prefWidth="13.0" text=" 0">
                      <font>
                         <Font name="Courier New Bold Italic" size="18.0" />
