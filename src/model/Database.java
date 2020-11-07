@@ -1,5 +1,7 @@
 package model;
 
+import java.util.*;
+
 import datastructure.*;
 
 public class Database {
@@ -37,6 +39,22 @@ public class Database {
 		return added;
 	}
 
+	public Person searchByName(String k) {
+		return nameTree.search(k).getValue();
+	}
+
+	public Person searchByLastName(String k) {
+		return lastNameTree.search(k).getValue();
+	}
+
+	public Person searchByCode(String k) {
+		return codeTree.search(k).getValue();
+	}
+
+	public Person searchByNameAndLastName(String k) {
+		return nameAndLastNameTree.search(k).getValue();
+	}
+
 	public AVLTree<String, Person> getNameTree() {
 		return nameTree;
 	}
@@ -67,6 +85,50 @@ public class Database {
 
 	public void setCodeTree(AVLTree<String, Person> codeTree) {
 		this.codeTree = codeTree;
+	}
+
+	public List<String> autoCompleteName(String word) {
+		Trie t = new Trie();
+		List<Person> persons = new ArrayList<Person>();
+		for (int i = 0; i < persons.size(); i++) {
+			t.add(persons.get(i).getName());
+		}
+
+		return t.autocomplete(word);
+
+	}
+
+	public List<String> autoCompleteLastName(String word) {
+		Trie t = new Trie();
+		List<Person> persons = new ArrayList<Person>();
+		for (int i = 0; i < persons.size(); i++) {
+			t.add(persons.get(i).getName());
+		}
+
+		return t.autocomplete(word);
+
+	}
+
+	public List<String> autoCompleteCode(String word) {
+		Trie t = new Trie();
+		List<Person> persons = new ArrayList<Person>();
+		for (int i = 0; i < persons.size(); i++) {
+			t.add(persons.get(i).getName());
+		}
+
+		return t.autocomplete(word);
+
+	}
+
+	public List<String> autoCompleteNameAndLastName(String word) {
+		Trie t = new Trie();
+		List<Person> persons = new ArrayList<Person>();
+		for (int i = 0; i < persons.size(); i++) {
+			t.add(persons.get(i).getName());
+		}
+
+		return t.autocomplete(word);
+
 	}
 
 }
