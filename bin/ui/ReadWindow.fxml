@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="341.0" prefWidth="515.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="44.0" prefWidth="600.0">
+               <children>
+                  <Label text="Codigo: ">
+                     <font>
+                        <Font name="Courier New Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="codeR" layoutX="267.0" layoutY="18.0" text="#null">
+                     <font>
+                        <Font name="Courier New Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="13.0" prefWidth="600.0">
+               <children>
+                  <Label text="Nombre: ">
+                     <font>
+                        <Font name="Courier New Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="nameR" layoutX="267.0" layoutY="18.0" text="#null">
+                     <font>
+                        <Font name="Courier New Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="22.0" prefWidth="600.0">
+               <children>
+                  <Label text="Apellido: ">
+                     <font>
+                        <Font name="Courier New Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lastaNameR" layoutX="256.0" layoutY="18.0" text="#null">
+                     <font>
+                        <Font name="Courier New Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="37.0" prefWidth="600.0">
+               <children>
+                  <Label prefHeight="23.0" prefWidth="73.0" text="Sexo: ">
+                     <font>
+                        <Font name="Courier New Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="genderR" layoutX="274.0" layoutY="18.0" prefHeight="23.0" prefWidth="106.0" text="#null">
+                     <font>
+                        <Font name="Courier New Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="43.0" prefWidth="600.0">
+               <children>
+                  <Label text="Fecha: ">
+                     <font>
+                        <Font name="Courier New Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="birthdayDateR" layoutX="197.0" layoutY="18.0" text="#null">
+                     <font>
+                        <Font name="Courier New Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="38.0" prefWidth="600.0">
+               <children>
+                  <Label text="Estatura: ">
+                     <font>
+                        <Font name="Courier New Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="heightR" layoutX="245.0" layoutY="18.0" prefHeight="23.0" prefWidth="68.0" text="#null ">
+                     <font>
+                        <Font name="Courier New Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="245.0" layoutY="25.0" text="cm">
+                     <font>
+                        <Font name="Courier New Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="30.0" prefWidth="600.0">
+               <children>
+                  <Label text="Nacionalidad: ">
+                     <font>
+                        <Font name="Courier New Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="nationR" layoutX="234.0" layoutY="18.0" text="#null">
+                     <font>
+                        <Font name="Courier New Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+   <left>
+      <ImageView fx:id="photo" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+   </left>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</BorderPane>
