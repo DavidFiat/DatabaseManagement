@@ -3,6 +3,7 @@ package datastructure;
 import java.util.*;
 
 public class Trie {
+	
 
 	private TrieNode root;
 
@@ -58,3 +59,4 @@ public class Trie {
 	}
 
 }
+
